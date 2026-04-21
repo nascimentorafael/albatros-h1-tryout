@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Albatros H1 — Tryout 2026/27</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #1a1a2e; display: flex; justify-content: center; padding: 30px 16px; font-family: 'Barlow', Arial, sans-serif; min-height: 100vh; }
+  .flyer { background: #0a1628; border-radius: 16px; overflow: hidden; width: 100%; max-width: 420px; }
+
+  /* TOP */
+  .flyer-top { background: #0a1628; padding: 24px 24px 20px; position: relative; }
+  .flyer-top::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: #dc2626; }
+  .logo-block { display: flex; align-items: center; margin-bottom: 20px; }
+  .logo-text-block { display: flex; flex-direction: column; }
+  .logo-name { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 24px; font-weight: 900; color: #fff; letter-spacing: 3px; text-transform: uppercase; line-height: 1; }
+  .logo-sub { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; color: #dc2626; text-transform: uppercase; margin-top: 3px; }
+  .season-tag { margin-left: auto; font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; color: #94a3b8; text-transform: uppercase; border: 1px solid #1e3a5f; padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
+  .headline { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 56px; font-weight: 900; color: #fff; line-height: 0.95; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .headline span { color: #dc2626; }
+  .subheadline { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 14px; font-weight: 600; color: #64748b; letter-spacing: 3px; text-transform: uppercase; }
+
+  /* POSITIONS */
+  .positions-section { background: #111f38; padding: 20px 24px; }
+  .section-label { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 3px; color: #64748b; text-transform: uppercase; margin-bottom: 12px; }
+  .positions-grid { display: flex; flex-direction: column; gap: 8px; }
+  .position-pill { display: flex; align-items: flex-start; gap: 12px; background: #0a1628; border: 1px solid #1e3a5f; border-radius: 8px; padding: 12px 16px; }
+  .pos-dot { width: 7px; height: 7px; border-radius: 50%; background: #dc2626; flex-shrink: 0; margin-top: 7px; }
+  .pos-info { display: flex; flex-direction: column; gap: 3px; }
+  .pos-name { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 20px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; line-height: 1.1; }
+  .pos-req { font-size: 12px; color: #64748b; letter-spacing: 0.3px; }
+
+  /* DATES */
+  .dates-section { background: #dc2626; padding: 18px 24px; }
+  .dates-label { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 3px; color: rgba(255,255,255,0.7); text-transform: uppercase; margin-bottom: 12px; }
+  .dates-row { display: flex; gap: 10px; }
+  .date-block { flex: 1; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 12px; text-align: center; }
+  .date-day { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 38px; font-weight: 900; color: #fff; line-height: 1; }
+  .date-month { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+  .time-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; background: rgba(0,0,0,0.2); border-radius: 20px; padding: 5px 16px; font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 16px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+
+  /* LOCATION */
+  .location-section { background: #111f38; padding: 16px 24px; border-bottom: 1px solid #1e3a5f; }
+  .location-link { display: flex; align-items: flex-start; gap: 12px; text-decoration: none; }
+  .location-link:hover .loc-name { color: #60a5fa; text-decoration: underline; }
+  .location-link:hover .loc-icon { background: rgba(220,38,38,0.25); }
+  .loc-icon { width: 32px; height: 32px; background: rgba(220,38,38,0.15); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; margin-top: 1px; transition: background 0.2s; }
+  .loc-text { display: flex; flex-direction: column; gap: 2px; }
+  .loc-name { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 15px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px; line-height: 1.3; transition: color 0.2s; }
+  .loc-address { font-size: 12px; color: #64748b; }
+  .loc-maps { font-size: 11px; color: #3b82f6; letter-spacing: 0.3px; margin-top: 2px; }
+
+  /* CTA */
+  .cta-section { background: #0a1628; padding: 16px 24px 24px; }
+  .cta-text { font-size: 14px; color: #94a3b8; margin-bottom: 14px; line-height: 1.7; }
+  .cta-text strong { color: #fff; }
+  .level-tag { display: inline-flex; align-items: center; gap: 6px; background: #1e3a5f; border-radius: 20px; padding: 5px 14px; font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 13px; font-weight: 600; color: #93c5fd; letter-spacing: 1px; text-transform: uppercase; }
+  .reddot { width: 6px; height: 6px; border-radius: 50%; background: #dc2626; display: inline-block; }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <div class="flyer-top">
+    <div class="logo-block">
+      <div class="logo-text-block">
+        <div class="logo-name">Albatros</div>
+        <div class="logo-sub">Amsterdam · Volleyball</div>
+      </div>
+      <span class="season-tag">2026 / 27</span>
+    </div>
+    <div class="headline">We're<br><span>recruiting</span></div>
+    <div class="subheadline">Promotion class · Heren 1</div>
+  </div>
+
+  <div class="positions-section">
+    <div class="section-label">Open positions</div>
+    <div class="positions-grid">
+      <div class="position-pill">
+        <div class="pos-dot"></div>
+        <div class="pos-info">
+          <div class="pos-name">Middle blocker</div>
+        </div>
+      </div>
+      <div class="position-pill">
+        <div class="pos-dot"></div>
+        <div class="pos-info">
+          <div class="pos-name">Outside hitter</div>
+          <div class="pos-req">Great passing skills required</div>
+        </div>
+      </div>
+      <div class="position-pill">
+        <div class="pos-dot"></div>
+        <div class="pos-info">
+          <div class="pos-name">Setter</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dates-section">
+    <div class="dates-label">Tryout dates · May 2026</div>
+    <div class="dates-row">
+      <div class="date-block">
+        <div class="date-day">11</div>
+        <div class="date-month">May</div>
+      </div>
+      <div class="date-block">
+        <div class="date-day">18</div>
+        <div class="date-month">May</div>
+      </div>
+    </div>
+    <div><span class="time-badge">⏰ 21:00</span></div>
+  </div>
+
+  <div class="location-section">
+    <a class="location-link" href="https://maps.app.goo.gl/WEkZwvQRpw5eyi8UA?g_st=ic" target="_blank" rel="noopener">
+      <div class="loc-icon">📍</div>
+      <div class="loc-text">
+        <div class="loc-name">MSO Montessori SportsHal Oost</div>
+        <div class="loc-address">Amsterdam</div>
+        <div class="loc-maps">Open in Google Maps →</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="cta-section">
+    <div class="cta-text">
+      Interested or know someone who might be?<br>
+      <strong>Reach out to confirm your spot.</strong><br>
+      Referrals and recommendations are very welcome.
+    </div>
+    <span class="level-tag"><span class="reddot"></span> Competitive · High level</span>
+  </div>
+
+</div>
+</body>
+</html>
